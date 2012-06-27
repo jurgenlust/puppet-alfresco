@@ -1,0 +1,120 @@
+###############################
+## Common Alfresco Properties #
+###############################
+
+#
+# Sample custom content and index data location
+#
+dir.root=<%= alfresco_home %>
+
+#
+# Sample database connection properties
+#
+db.username=<%= database_user %>
+db.password=<%= database_pass %>
+
+#
+# External locations
+#-------------
+ooo.exe=/usr/lib/libreoffice/program/soffice
+ooo.enabled=true
+jodconverter.officeHome=/usr/lib/libreoffice
+jodconverter.portNumbers=8101
+jodconverter.enabled=true
+img.root=/usr/lib/ImageMagick-<%= imagemagick_version %>
+img.exe=/usr/bin/convert
+swf.exe=/usr/bin/pdf2swf
+
+#
+# Property to control whether schema updates are performed automatically.
+# Updates must be enabled during upgrades as, apart from the static upgrade scripts,
+# there are also auto-generated update scripts that will need to be executed.  After
+# upgrading to a new version, this can be disabled.
+#
+db.schema.update=true
+
+db.driver=<%= database_driver %>
+db.url=<%= database_url %>
+
+
+index.subsystem.name=lucene
+
+# No Samba or CIFS for the moment
+cifs.enabled=false
+nfs.enabled=false
+ftp.enabled=false
+
+#
+# Outbound Email Configuration
+#-------------
+mail.host=<%= smtp_host %>
+mail.port=<%= smtp_port %>
+mail.username=<%= smtp_username %>
+mail.password=<%= smtp_password %>
+mail.encoding=<%= smtp_encoding %>
+mail.from.default=<%= smtp_from_default %>
+mail.smtp.auth=<%= smtp_auth %>
+
+#
+# Alfresco Email Service and Email Server
+#-------------
+
+# Enable/Disable the inbound email service.  The service could be used by processes other than
+# the Email Server (e.g. direct RMI access) so this flag is independent of the Email Service.
+#-------------
+email.inbound.enabled=<%= mail_inbound_enabled %>
+
+# Email Server properties 
+#-------------
+email.server.enabled=<%= mail_enabled %>
+email.server.port=<%= mail_port %>
+email.server.domain=<%= mail_domain %>
+email.inbound.unknownUser=<%= mail_unknown_user %>
+
+# A comma separated list of email REGEX patterns of allowed senders.
+# If there are any values in the list then all sender email addresses
+# must match. For example:
+#   .*\@alfresco\.com, .*\@alfresco\.org
+# Allow anyone:
+#-------------
+email.server.allowed.senders=<%= mail_allowed_senders %>
+
+#
+# URL Generation Parameters (The ${localname} token is replaced by the local server name)
+#-------------
+alfresco.context=<%= alfresco_webapp_context %>
+alfresco.host=<%= alfresco_host %>
+alfresco.port=8<%= number -%>80
+alfresco.protocol=<%= alfresco_protocol %>
+
+share.context=<%= share_webapp_context %>
+share.host=<%= share_host %>
+share.port=8<%= number -%>80
+share.protocol=<%= share_protocol %>
+
+imap.server.enabled=<%= imap_enabled %>
+imap.server.port=<%= imap_port %>
+imap.server.host=<%= imap_host %>
+
+# Default value of alfresco.rmi.services.host is 0.0.0.0 which means 'listen on all adapters'.
+# This allows connections to JMX both remotely and locally.
+#
+alfresco.rmi.services.host=0.0.0.0
+
+#
+# RMI service ports for the individual services.
+# These seven services are available remotely.
+#
+# Assign individual ports for each service for best performance 
+# or run several services on the same port. You can even run everything on 50500 if needed.
+#
+# Select 0 to use a random unused port.
+# 
+#avm.rmi.service.port=50501
+#avmsync.rmi.service.port=50502
+#attribute.rmi.service.port=50503
+#authentication.rmi.service.port=50504
+#repo.rmi.service.port=50505
+#action.rmi.service.port=50506
+#wcm-deployment-receiver.rmi.service.port=50507
+#monitor.rmi.service.port=50508
