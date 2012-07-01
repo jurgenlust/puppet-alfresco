@@ -49,8 +49,8 @@ class alfresco(
 	$imap_enabled = "false",
 	$imap_port = "1143",
 	$imap_host = $fqdn,
-	$authentication_chain="alfrescoNtlm1:alfrescoNtlm"
-	
+	$authentication_chain="alfrescoNtlm1:alfrescoNtlm",
+	$custom_settings=[]
 ) {
 	
 # configuration	

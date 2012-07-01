@@ -118,3 +118,7 @@ alfresco.rmi.services.host=0.0.0.0
 #action.rmi.service.port=50506
 #wcm-deployment-receiver.rmi.service.port=50507
 #monitor.rmi.service.port=50508
+
+<% custom_settings.each do |setting| -%>
+<%= setting %>
+<% end -%>
