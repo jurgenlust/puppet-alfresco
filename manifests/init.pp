@@ -211,6 +211,7 @@ class alfresco(
 		path => "${alfresco_dir}/tomcat/shared/classes/alfresco-global.properties",
 		content => template("alfresco/alfresco-global.properties.erb"),
 		require => Tomcat::Webapp::Tomcat[$user],
+		notify => Tomcat::Webapp::Service[$user],
 	}
 	
 	file { "${alfresco_dir}/tomcat/shared/classes/alfresco":
@@ -227,6 +228,7 @@ class alfresco(
 		group => $user,
 		mode => 0755,
 		require => File["${alfresco_dir}/tomcat/shared/classes/alfresco"],
+		notify => Tomcat::Webapp::Service[$user],
 	}
 
 	file { "share-config-custom.xml":

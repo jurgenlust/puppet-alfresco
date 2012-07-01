@@ -12,7 +12,7 @@
     "README": "42a28e1c4c831b12fd47c9fb78703ed1",
     "README.md": "14863f5d59ac4d0d2ba0f4e9577e5b77",
     "files/db/postgresql-9.1-902.jdbc4.jar": "42b118950c660485a77dc7e79a8e06b1",
-    "manifests/init.pp": "b379b9acf8dc7d430388e36c806d3230",
+    "manifests/init.pp": "415debbbb82b1a9b57d19852e89efd0c",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
     "templates/alfresco-global.properties.erb": "e5a26c372241116150a00a3a32af5bf6",
