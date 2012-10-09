@@ -21,8 +21,8 @@ class alfresco(
 	$database_user = "alfresco",
 	$database_pass = "alfresco",
 	$number = 7,
-	$version = "4.0.d",
-	$build = "4003",
+	$version = "4.0.e",
+	$build = "00007",
 	$alfresco_host = $fqdn,
 	$alfresco_protocol = "http",
 	$alfresco_port = "8080",
@@ -32,6 +32,7 @@ class alfresco(
 	$share_port = "8080",
 	$share_contextroot = "share",
 	$webapp_base = "/srv",
+	$memory = "1024m",
 	$imagemagick_version = "6.6.9",
 	$smtp_host = "localhost",
 	$smtp_port = "25",
@@ -145,13 +146,17 @@ class alfresco(
 			File["/tmp/${zip}"],
 			Package["unzip"]
 		],
+		notify => [
+			Exec['move-alfresco-war'],
+			Exec['move-share-war']
+		]
 		cwd => "/tmp",
 		user => "root" 	
 	}
 	
 	exec { "move-alfresco-war":
 		command => "/bin/mv /tmp/alfresco-${version}/web-server/webapps/alfresco.war ${alfresco_dir}/tomcat/webapps/${alfresco_webapp_war}",
-		creates => "${alfresco_dir}/tomcat/webapps/${alfresco_webapp_war}",
+		refreshonly => true,
 		user => "root",
 		require => [
 			Exec["extract-alfresco"],
@@ -170,7 +175,7 @@ class alfresco(
 	
 	exec { "move-share-war":
 		command => "/bin/mv /tmp/alfresco-${version}/web-server/webapps/share.war ${alfresco_dir}/tomcat/webapps/${share_webapp_war}",
-		creates => "${alfresco_dir}/tomcat/webapps/${share_webapp_war}",
+		refreshonly => true,
 		user => "root",
 		require => [
 			Exec["extract-alfresco"],
@@ -243,7 +248,7 @@ class alfresco(
 		webapp_base => $webapp_base,
 		number => $number,
 		max_number_open_files => "8192",		
-		java_opts => "-XX:MaxPermSize=512m -Xms128m -Xmx768m -Dalfresco.home=${alfresco_home} -Dcom.sun.management.jmxremote",
+		java_opts => "-XX:MaxPermSize=512m -Xms${memory} -Xmx${memory} -Dalfresco.home=${alfresco_home} -Dcom.sun.management.jmxremote",
 		description => "Alfresco ECM",
 		service_require => [
 			File['alfresco-war'],
