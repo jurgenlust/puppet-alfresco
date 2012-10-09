@@ -149,7 +149,7 @@ class alfresco(
 		notify => [
 			Exec['move-alfresco-war'],
 			Exec['move-share-war']
-		]
+		],
 		cwd => "/tmp",
 		user => "root" 	
 	}
